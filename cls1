@@ -1,0 +1,46 @@
+using Packt.Shared;
+using static System.Console;
+using System;
+
+namespace MySpace{
+    class Program{
+        static void Main(string[] argd){
+
+            var bob = new Person();
+            bob.Name = "Bob Smith";
+            bob.DateOfBirth = new DateTime(1965, 12, 22);
+            
+            WriteLine(
+                format: "{0} was born on {1:dddd, d MMM yyy}",
+                arg0: bob.Name,
+                arg1: bob.DateOfBirth
+                );
+
+            var alice = new Person{
+                Name = "Alice Jones",
+                DateOfBirth = new DateTime(1998, 3, 7)
+            };
+            
+            WriteLine(
+                format: "{0} was born on {1:dd, MMM yy}",
+                arg0: alice.Name,
+                arg1: alice.DateOfBirth
+                );
+
+            bob.FavWonders = Wonders.StatueOfZeusAtOlympia;
+            WriteLine($"{bob.Name}'s favorite wonder is {bob.FavWonders}. It's integer is {(int)bob.FavWonders}");
+
+            bob.BucketList = bob.BucketList = (Wonders)12;
+            //Wonders.HangingGardensOfBabylon | Wonders.MausoleumAtHalicarnassus;
+            WriteLine($"{bob.Name}'s bucket list is {bob.BucketList}");
+
+            bob.Children.Add(new Person { Name = "Alfred" });
+            bob.Children.Add(new Person { Name = "Zoe" });
+
+            WriteLine($"{bob.Name} has {bob.Children.Count} children: ");
+            for (int child = 0; child < bob.Children.Count; child++){
+                WriteLine($" {bob.Children[child].Name}");
+            }
+        }
+    }
+}
